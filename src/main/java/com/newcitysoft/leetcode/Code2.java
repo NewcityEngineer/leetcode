@@ -1,5 +1,6 @@
 package com.newcitysoft.leetcode;
 
+import java.math.BigDecimal;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -28,6 +29,7 @@ public class Code2 {
         }
     }
 
+
     public static ListNode reverseArrayToListNode(char[] chars) {
         List<ListNode> nodes = new LinkedList<ListNode>();
         // 生成节点列表
@@ -52,10 +54,11 @@ public class Code2 {
         append(sb1, l1);
         append(sb2, l2);
         // 反转节点
-        int num1 = Integer.parseInt(sb1.reverse().toString());
-        int num2 = Integer.parseInt(sb2.reverse().toString());
+        BigDecimal decimal1 = new BigDecimal(sb1.reverse().toString());
+        BigDecimal decimal2 = new BigDecimal(sb2.reverse().toString());
         // 计算结果
-        String sumStr = String.valueOf(num1 + num2);
+        BigDecimal add = decimal1.add(decimal2);
+        String sumStr = add.toString();
         char[] chars = sumStr.toCharArray();
         // 转换数组为节点类型
         return reverseArrayToListNode(chars);
