@@ -41,22 +41,31 @@ public class Code3 {
     public int lengthOfLongestSubstring(String s) {
         int result = 0;
         String temp = "";
-        for(int i = 0; i < s.length() -1 ; i++) {
+
+        if(s == null || "".equals(s)) {
+            return result;
+        }
+
+        for(int i = 0; i < s.length() ; i++) {
+            System.out.println("第" + i + "趟");
             for(int j = i; j < s.length(); j++) {
-                if(temp.contains(s.charAt(j)+"")) {
+                System.out.println(temp);
+                if(temp.contains(String.valueOf(s.charAt(j)))) {
                     break;
                 }
-                temp = s.substring(i, j+1);
+                temp = s.substring(i, j + 1);
                 if(temp.length() > result) {
                     result = temp.length();
                 }
             }
+
+            temp = "";
         }
 
         return result;
     }
 
     public static void main(String[] args) {
-        System.out.println(new Code3().lengthOfLongestSubstring("dasdasdasf12312312313afafa"));
+        System.out.println(new Code3().lengthOfLongestSubstring("aab"));
     }
 }
