@@ -1,5 +1,8 @@
 package com.newcitysoft.leetcode;
 
+import java.util.HashSet;
+import java.util.Set;
+
 /**
  * 3. 无重复字符的最长子串
  *
@@ -35,6 +38,8 @@ public class Code3 {
      *          b bb
      *
      *
+     *  提交用时：155ms
+     *
      * @param s
      * @return
      */
@@ -47,9 +52,7 @@ public class Code3 {
         }
 
         for(int i = 0; i < s.length() ; i++) {
-            System.out.println("第" + i + "趟");
             for(int j = i; j < s.length(); j++) {
-                System.out.println(temp);
                 if(temp.contains(String.valueOf(s.charAt(j)))) {
                     break;
                 }
@@ -65,7 +68,39 @@ public class Code3 {
         return result;
     }
 
+    /**
+     * 提交测试：用时103ms
+     *
+     * @param s
+     * @return
+     */
+    public int lengthOfLongestSubstring2(String s) {
+        int result = 0;
+        Set<Character> set = new HashSet<Character>();
+
+        if(s == null || "".equals(s)) {
+            return result;
+        }
+
+        for(int i = 0; i < s.length() ; i++) {
+            for(int j = i; j < s.length(); j++) {
+                if(set.contains(s.charAt(j))) {
+                    break;
+                }
+                set.add(s.charAt(j));
+                if(set.size() > result) {
+                    result = set.size();
+                }
+            }
+
+            set.clear();
+        }
+
+        return result;
+    }
+
     public static void main(String[] args) {
         System.out.println(new Code3().lengthOfLongestSubstring("aab"));
+        System.out.println(new Code3().lengthOfLongestSubstring2("abcabcbb"));
     }
 }
